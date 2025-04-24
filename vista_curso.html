@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConectaRD - Vista del Curso</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+    }
+    
+    /* Top header styles */
+    .top-header {
+      background-color: #fff;
+      padding: 10px 0;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .search-bar input {
+      border-radius: 20px;
+      border: 1px solid #ddd;
+      padding-left: 15px;
+    }
+    
+    .user-welcome {
+      text-align: right;
+      font-weight: 600;
+      color: #555;
+    }
+    
+    .user-welcome i {
+      margin-right: 5px;
+      color: #f39c12;
+    }
+    
+    /* Main navigation */
+    .main-nav {
+      background-color: #f39c12;
+      padding: 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .main-nav .nav-link {
+      color: white;
+      padding: 15px 20px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    
+    .main-nav .nav-link:hover, .main-nav .nav-link.active {
+      background-color: rgba(255,255,255,0.2);
+    }
+    
+    .main-nav .nav-item i {
+      margin-right: 8px;
+    }
+    
+    /* Course header */
+    .course-header {
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .course-cover {
+      height: 200px;
+      background: linear-gradient(135deg, #f39c12, #e67e22);
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .course-cover i {
+      font-size: 4rem;
+      color: white;
+    }
+    
+    .course-info {
+      padding: 25px;
+    }
+    
+    .course-info h2 {
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    
+    .instructor-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    
+    .instructor-img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: #f8f9fa;
+      margin-right: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .course-meta {
+      display: flex;
+      margin-bottom: 20px;
+    }
+    
+    .meta-item {
+      display: flex;
+      align-items: center;
+      margin-right: 20px;
+      color: #666;
+    }
+    
+    .meta-item i {
+      color: #f39c12;
+      margin-right: 8px;
+    }
+    
+    .progress-section {
+      margin-bottom: 20px;
+    }
+    
+    .progress-bar {
+      background-color: #f39c12;
+    }
+    
+    /* Course content */
+    .content-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .content-header {
+      background-color: #f8f9fa;
+      padding: 15px 20px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .content-body {
+      padding: 20px;
+    }
+    
+    .module-item {
+      border-bottom: 1px solid #eee;
+      padding: 15px 0;
+    }
+    
+    .module-item:last-child {
+      border-bottom: none;
+    }
+    
+    .module-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+    
+    .module-title {
+      font-weight: 600;
+      color: #333;
+    }
+    
+    .module-toggle {
+      color: #f39c12;
+    }
+    
+    .lesson-list {
+      list-style: none;
+      padding-left: 30px;
+      margin-top: 15px;
+    }
+    
+    .lesson-item {
+      padding: 10px 0;
+      display: flex;
+      align-items: center;
+    }
+    
+    .lesson-icon {
+      margin-right: 10px;
+      color: #f39c12;
+    }
+    
+    .lesson-title {
+      flex-grow: 1;
+    }
+    
+    .lesson-duration {
+      color: #999;
+      font-size: 0.9rem;
+    }
+    
+    .certificate-info {
+      background-color: #fff8dc;
+      border-left: 4px solid #f39c12;
+      padding: 15px;
+      margin-top: 20px;
+    }
+    
+    /* Course details */
+    .details-card {
+      background-color: white;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .details-header {
+      background-color: #f8f9fa;
+      padding: 15px 20px;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .details-body {
+      padding: 20px;
+    }
+    
+    .objectives-list {
+      padding-left: 20px;
+    }
+    
+    .objectives-list li {
+      margin-bottom: 10px;
+    }
+    
+    /* Status badge */
+    .status-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-right: 5px;
+    }
+    
+    .in-progress {
+      background-color: #f1c40f;
+      color: white;
+    }
+    
+    .btn-action {
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 20px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    
+    .btn-action:hover {
+      background-color: #e67e22;
+      color: white;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .user-welcome {
+        text-align: center;
+        margin-top: 10px;
+      }
+      
+      .course-meta {
+        flex-direction: column;
+      }
+      
+      .meta-item {
+        margin-bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top header with logo and account -->
+  <div class="top-header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-3">
+          <div class="logo">ConectaRD</div>
+        </div>
+        <div class="col-md-6">
+          <div class="search-bar">
+            <input type="text" class="form-control" placeholder="Buscar cursos...">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="user-welcome">
+            <i class="fas fa-user-circle"></i> Bienvenido, Juan
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Main navigation bar -->
+  <nav class="main-nav">
+    <div class="container">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="principal.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="vista_curso.html"><i class="fas fa-book"></i> Cursos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="perfil.html"><i class="fas fa-user"></i> Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="soporte.html"><i class="fas fa-question-circle"></i> Ayuda & Soporte</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container py-4">
+    <!-- Course Header -->
+    <div class="course-header">
+      <div class="course-cover">
+        <i class="fas fa-file-word"></i>
+      </div>
+      <div class="course-info">
+        <div class="d-flex justify-content-between align-items-start">
+          <h2>Microsoft Word Básico</h2>
+          <span class="status-badge in-progress">En progreso</span>
+        </div>
+        
+        <div class="instructor-info">
+          <div class="instructor-img">
+            <i class="fas fa-user"></i>
+          </div>
+          <div>
+            <p class="mb-0 fw-bold">Instructor: Carlos Mendoza</p>
+            <small class="text-muted">Especialista en Alfabetización Digital</small>
+          </div>
+        </div>
+        
+        <div class="course-meta">
+          <div class="meta-item">
+            <i class="fas fa-clock"></i>
+            <span>Duración: 6 semanas</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-file-alt"></i>
+            <span>8 módulos</span>
+          </div>
+          <div class="meta-item">
+            <i class="fas fa-users"></i>
+            <span>156 estudiantes</span>
+          </div>
+        </div>
+        
+        <div class="progress-section">
+          <div class="d-flex justify-content-between mb-2">
+            <span>Progreso del curso</span>
+            <span>35%</span>
+          </div>
+          <div class="progress" style="height: 10px;">
+            <div class="progress-bar" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+        
+        <div class="d-grid gap-2 d-md-flex">
+          <button class="btn btn-action"><i class="fas fa-play-circle me-2"></i> Continuar Curso</button>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-md-8">
+        <!-- Course Content -->
+        <div class="content-card">
+          <div class="content-header">
+            <h4 class="mb-0">Contenido del Curso</h4>
+          </div>
+          <div class="content-body">
+            <!-- Module 1 -->
+            <div class="module-item">
+              <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module1">
+                <div class="module-title">Módulo 1: Introducción a Microsoft Word</div>
+                <div class="module-toggle"><i class="fas fa-chevron-down"></i></div>
+              </div>
+              <div id="module1" class="collapse show">
+                <ul class="lesson-list">
+                  <li class="lesson-item">
+                    <div class="lesson-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="lesson-title">1.1 Conociendo Microsoft Word</div>
+                    <div class="lesson-duration">15 min</div>
+                  </li>
+                  <li class="lesson-item">
+                    <div class="lesson-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="lesson-title">1.2 Interfaz y herramientas básicas</div>
+                    <div class="lesson-duration">20 min</div>
+                  </li>
+                  <li class="lesson-item">
+                    <div class="lesson-icon"><i class="fas fa-play-circle"></i></div>
+                    <div class="lesson-title">1.3 Creación de nuevo documento</div>
+                    <div class="lesson-duration">25 min</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- Module 2 -->
+            <div class="module-item">
+              <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module2">
+                <div class="module-title">Módulo 2: Formato de Texto</div>
+                <div class="module-toggle"><i class="fas fa-chevron-down"></i></div>
+              </div>
+              <div id="module2" class="collapse">
+                <ul class="lesson-list">
+                  <li class="lesson-item">
+                    <div class="lesson-icon"><i class="fas fa-lock"></i></div>
+                    <div class="lesson-title">2.1 Fuentes y tamaños</div>
+                    <div class="lesson-duration">30 min</div>
+                  </li>
+                  <li class="lesson-item">
+                    <div class="lesson-icon"><i class="fas fa-lock"></i></div>
+                    <div class="lesson-title">2.2 Estilos y formato</div>
+                    <div class="lesson-duration">25 min</div>
+                  </li>
+                  <li class="lesson-item">
+                    <div class="lesson-icon"><i class="fas fa-lock"></i></div>
+                    <div class="lesson-title">2.3 Alineación y espaciado</div>
+                    <div class="lesson-duration">40 min</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <!-- Module 3 -->
+            <div class="module-item">
+              <div class="module-header" data-bs-toggle="collapse" data-bs-target="#module3">
+                <div class="module-title">Módulo 3: Párrafos y Listas</div>
+                <div class="module-toggle"><i class="fas fa-chevron-down"></i></div>
+              </div>
+              <div id="module3" class="collapse">
+                <ul class="lesson-list">
+                  <li class="lesson-item">
+                    <div class="lesson-icon"><i class="fas fa-lock"></i></div>
+                    <div class="lesson-title">3.1 Formato de párrafos</div>
+                    <div class="lesson-duration">30 min</div>
+                  </li>
+                  <li class="lesson-item">
+                    <div class="lesson-icon"><i class="fas fa-lock"></i></div>
+                    <div class="lesson-title">3.2 Creación de listas numeradas</div>
+                    <div class="lesson-duration">35 min</div>
+                  </li>
+                  <li class="lesson-item">
+                    <div class="lesson-icon"><i class="fas fa-lock"></i></div>
+                    <div class="lesson-title">3.3 Listas con viñetas</div>
+                    <div class="lesson-duration">45 min</div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            
+            <div class="certificate-info">
+              <p class="mb-0"><i class="fas fa-certificate me-2"></i> Se otorgará un certificado al completar todos los módulos y aprobar la evaluación final.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-md-4">
+        <!-- Course Details -->
+        <div class="details-card">
+          <div class="details-header">
+            <h4 class="mb-0">Detalles del Curso</h4>
+          </div>
+          <div class="details-body">
+            <h5>Descripción</h5>
+            <p>Este curso te enseñará a utilizar Microsoft Word desde lo más básico hasta un nivel intermedio, permitiéndote crear documentos profesionales con facilidad y eficiencia.</p>
+            
+            <h5 class="mt-4">Objetivos de Aprendizaje</h5>
+            <ul class="objectives-list">
+              <li>Familiarizarse con la interfaz de Microsoft Word</li>
+              <li>Dominar las funciones básicas de formato de texto</li>
+              <li>Crear documentos con estructura profesional</li>
+              <li>Utilizar tablas y gráficos simples</li>
+              <li>Revisar y corregir documentos eficientemente</li>
+            </ul>
+            
+            <h5 class="mt-4">Requisitos</h5>
+            <p>No se requieren conocimientos previos. Solo necesitarás una computadora con Microsoft Word instalado (cualquier versión reciente).</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

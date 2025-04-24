@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ConectaRD - Ayuda & Soporte</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        /* Header styles */
+        .top-header {
+            background-color: #fff;
+            padding: 10px 0;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .search-bar input {
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            padding-left: 15px;
+        }
+        
+        .nav-item {
+            margin: 0 10px;
+        }
+        
+        /* Main navigation */
+        .main-nav {
+            background-color: #f39c12;
+            padding: 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .main-nav .nav-link {
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .main-nav .nav-link:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .main-nav .nav-item i {
+            margin-right: 8px;
+        }
+        
+        /* Hero banner */
+        .hero-banner {
+            background-color: #f39c12;
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .hero-banner h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .hero-banner p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* Support styles */
+        .support-container {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .support-card {
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            height: 200px;
+        }
+        
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+        }
+        
+        .support-icon {
+            font-size: 2.5rem;
+            color: #f39c12;
+            margin-bottom: 15px;
+        }
+        
+        .support-card-title {
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .support-card-text {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .faq-item {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            color: #333;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        
+        .faq-question:hover {
+            color: #f39c12;
+        }
+        
+        .faq-answer {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .faq-question.active + .faq-answer {
+            display: block;
+        }
+        
+        .contact-form label {
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        
+        .btn-primary {
+            background-color: #f39c12;
+            border-color: #f39c12;
+            padding: 8px 20px;
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            background-color: #e67e22;
+            border-color: #e67e22;
+        }
+        
+        .btn-outline {
+            border: 1px solid #f39c12;
+            color: #f39c12;
+            background-color: transparent;
+            padding: 8px 20px;
+            font-weight: 600;
+        }
+        
+        .btn-outline:hover {
+            background-color: #f39c12;
+            color: white;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .contact-info-icon {
+            width: 40px;
+            height: 40px;
+            background-color: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: #f39c12;
+            font-size: 1.2rem;
+        }
+        
+        .support-search {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .support-search h4 {
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .search-input {
+            border-radius: 30px;
+            padding: 15px 25px;
+            border: 1px solid #ddd;
+            font-size: 1.1rem;
+        }
+        
+        .search-btn {
+            border-radius: 30px;
+            padding: 15px 30px;
+            background-color: #f39c12;
+            border: none;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .tutorial-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .tutorial-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .tutorial-icon {
+            width: 50px;
+            height: 50px;
+            background-color: #f39c12;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .tutorial-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .tutorial-meta {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-banner {
+                padding: 30px 0;
+            }
+            
+            .hero-banner h2 {
+                font-size: 1.8rem;
+            }
+            
+            .user-welcome {
+                text-align: center;
+                margin-top: 10px;
+            }
+            
+            .support-card {
+                height: auto;
+                padding-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top header with logo and account -->
+    <div class="top-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="logo">ConectaRD</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="search-bar">
+                        <input type="text" class="form-control" placeholder="Buscar ayuda...">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="user-welcome text-end">
+                        <i class="fas fa-user-circle"></i> Bienvenido, Juan
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main navigation bar -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="principal.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="vista_curso.html"><i class="fas fa-book"></i> Cursos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="perfil.html"><i class="fas fa-user"></i> Perfil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="soporte.html"><i class="fas fa-question-circle"></i> Ayuda & Soporte</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero banner -->
+    <section class="hero-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>Centro de Ayuda & Soporte</h2>
+                    <p>Encuentra respuestas a tus preguntas y obtén la ayuda que necesitas para aprovechar al máximo la plataforma ConectaRD.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Support search section -->
+    <div class="container">
+        <div class="support-search">
+            <div class="row justify-content-center">
+                <div class="col-md-10 text-center">
+                    <h4>¿Cómo podemos ayudarte hoy?</h4>
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control search-input" placeholder="Busca tu pregunta aquí...">
+                        <button class="btn search-btn" type="button">Buscar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Support categories -->
+    <div class="container">
+        <div class="support-container">
+            <h3 class="section-title">Categorías de ayuda</h3>
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="card support-card text-center">
+                        <div class="card-body">
+                            <i class="fas fa-book-open support-icon"></i>
+                            <h5 class="support-card-title">Primeros pasos</h5>
+                            <p class="support-card-text">Guías para comenzar a usar la plataforma.</p>
+                            <a href="#" class="btn btn-outline">Ver guías</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card support-card text-center">
+                        <div class="card-body">
+                            <i class="fas fa-graduation-cap support-icon"></i>
+                            <h5 class="support-card-title">Cursos y contenidos</h5>
+                            <p class="support-card-text">Ayuda con la navegación y los materiales.</p>
+                            <a href="#" class="btn btn-outline">Explorar</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card support-card text-center">
+                        <div class="card-body">
+                            <i class="fas fa-user-cog support-icon"></i>
+                            <h5 class="support-card-title">Mi cuenta</h5>
+                            <p class="support-card-text">Gestión de perfil y configuraciones.</p>
+                            <a href="#" class="btn btn-outline">Ver opciones</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card support-card text-center">
+                        <div class="card-body">
+                            <i class="fas fa-bug support-icon"></i>
+                            <h5 class="support-card-title">Problemas técnicos</h5>
+                            <p class="support-card-text">Soluciones a problemas comunes.</p>
+                            <a href="#" class="btn btn-outline">Resolver</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Frequently Asked Questions -->
+    <div class="container">
+        <div class="support-container">
+            <h3 class="section-title">Preguntas frecuentes</h3>
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cómo puedo inscribirme en un curso?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Para inscribirte en un curso, simplemente navega a la sección de "Cursos" en el menú principal. Busca el curso que te interese y haz clic en el botón "Inscribirme". También puedes usar la barra de búsqueda para encontrar cursos específicos. Una vez inscrito, el curso aparecerá en tu dashboard personal.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cómo puedo recuperar mi contraseña?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Si olvidaste tu contraseña, haz clic en "¿Olvidaste tu contraseña?" en la página de inicio de sesión. Se te pedirá que ingreses tu dirección de correo electrónico registrada. Te enviaremos un enlace para restablecer tu contraseña. Sigue las instrucciones en el correo electrónico para crear una nueva contraseña.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Cómo obtengo mi certificado al completar un curso?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Una vez que hayas completado todas las lecciones y evaluaciones de un curso, automáticamente se generará un certificado de finalización. Puedes acceder a tus certificados desde tu perfil en la sección "Mis Certificados". Desde allí, puedes descargarlos en formato PDF o compartirlos directamente en redes sociales.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Los cursos tienen fecha límite de finalización?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    No, la mayoría de nuestros cursos son de ritmo libre, lo que significa que puedes completarlos a tu propio ritmo. Una vez inscrito, tendrás acceso al contenido del curso de forma indefinida. Sin embargo, algunos cursos especiales o eventos pueden tener fechas límite específicas, lo cual se indicará claramente en la descripción del curso.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    ¿Puedo acceder a los cursos desde mi teléfono móvil?
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    Sí, nuestra plataforma está completamente optimizada para dispositivos móviles. Puedes acceder a todos los cursos y materiales desde tu smartphone o tablet a través de cualquier navegador web. También tenemos una aplicación móvil disponible para dispositivos Android e iOS que puedes descargar para una experiencia más cómoda.
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Video Tutorials -->
+    <div class="container">
+        <div class="support-container">
+            <h3 class="section-title">Tutoriales en video</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="tutorial-list">
+                        <li class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div>
+                                <div class="tutorial-title">Cómo navegar por la plataforma</div>
+                                <div class="tutorial-meta">3:45 minutos • 2,345 visualizaciones</div>
+                            </div>
+                        </li>
+                        <li class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div>
+                                <div class="tutorial-title">Cómo completar actividades en los cursos</div>
+                                <div class="tutorial-meta">5:12 minutos • 1,890 visualizaciones</div>
+                            </div>
+                        </li>
+                        <li class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div>
+                                <div class="tutorial-title">Personalización de tu perfil</div>
+                                <div class="tutorial-meta">2:38 minutos • 1,456 visualizaciones</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <ul class="tutorial-list">
+                        <li class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div>
+                                <div class="tutorial-title">Cómo descargar materiales de estudio</div>
+                                <div class="tutorial-meta">4:20 minutos • 1,230 visualizaciones</div>
+                            </div>
+                        </li>
+                        <li class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div>
+                                <div class="tutorial-title">Configurar notificaciones</div>
+                                <div class="tutorial-meta">2:55 minutos • 980 visualizaciones</div>
+                            </div>
+                        </li>
+                        <li class="tutorial-item">
+                            <div class="tutorial-icon">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div>
+                                <div class="tutorial-title">Participación en foros de discusión</div>
+                                <div class="tutorial-meta">3:50 minutos • 845 visualizaciones</div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Contact section -->
+    <div class="container mb-5">
+        <div class="support-container">
+            <h3 class="section-title">Contáctanos</h3>
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="contact-form">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Nombre completo</label>
+                            <input type="text" class="form-control" id="name" placeholder="Tu nombre">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Correo electrónico</label>
+                            <input type="email" class="form-control" id="email" placeholder="tu@email.com">
+                        </div>
+                        <div class="mb-3">
+                            <label for="topic" class="form-label">Tema</label>
+                            <select class="form-select" id="topic">
+                                <option selected>Selecciona un tema</option>
+                                <option>Problemas técnicos</option>
+                                <option>Preguntas sobre cursos</option>
+                                <option>Problemas con mi cuenta</option>
+                                <option>Sugerencias</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Mensaje</label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Describe tu consulta detalladamente..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar mensaje</button>
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="ms-md-4">
+                        <h4 class="mb-4">Información de contacto</h4>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">soporte@conectard.edu.do</p>
+                                <small>Respondemos en 24-48 horas</small>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">+1 (809) 555-2468</p>
+                                <small>Lunes a viernes: 8:00 AM - 6:00 PM</small>
+                            </div>
+                        </div>
+                        <div class="contact-info-item">
+                            <div class="contact-info-icon">
+                                <i class="fas fa-comment"></i>
+                            </div>
+                            <div>
+                                <p class="mb-0">Chat en vivo</p>
+                                <small>Disponible para usuarios registrados</small>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h5 class="mb-3">Síguenos en redes sociales</h5>
+                            <div class="d-flex">
+                                <a href="#" class="me-3 text-decoration-none">
+                                    <i class="fab fa-facebook fa-2x" style="color: #3b5998;"></i>
+                                </a>
+                                <a href="#" class="me-3 text-decoration-none">
+                                    <i class="fab fa-twitter fa-2x" style="color: #1da1f2;"></i>
+                                </a>
+                                <a href="#" class="me-3 text-decoration-none">
+                                    <i class="fab fa-instagram fa-2x" style="color: #e1306c;"></i>
+                                </a>
+                                <a href="#" class="text-decoration-none">
+                                    <i class="fab fa-youtube fa-2x" style="color: #ff0000;"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS and Custom Script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Toggle FAQ answers
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                question.classList.toggle('active');
+                
+                // Toggle icon
+                const icon = question.querySelector('i');
+                if (question.classList.contains('active')) {
+                    icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                } else {
+                    icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

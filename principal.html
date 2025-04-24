@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>ConectaRD - Página Principal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        /* Header styles */
+        .top-header {
+            background-color: #fff;
+            padding: 10px 0;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .search-bar input {
+            border-radius: 20px;
+            border: 1px solid #ddd;
+            padding-left: 15px;
+        }
+        
+        .nav-item {
+            margin: 0 10px;
+        }
+        
+        /* Main navigation */
+        .main-nav {
+            background-color: #f39c12;
+            padding: 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .main-nav .nav-link {
+            color: white;
+            padding: 15px 20px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .main-nav .nav-link:hover {
+            background-color: rgba(255,255,255,0.2);
+        }
+        
+        .main-nav .nav-item i {
+            margin-right: 8px;
+        }
+        
+        /* Hero banner */
+        .hero-banner {
+            background-color: #f39c12;
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .hero-banner h2 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .hero-banner p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* Carousel styles */
+        .carousel {
+            margin-bottom: 0;
+        }
+        
+        .carousel-item {
+            height: 350px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+        
+        .carousel-item:nth-child(1) {
+            background-color: #3498db;
+            background-image: linear-gradient(45deg, #3498db, #2980b9);
+        }
+        
+        .carousel-item:nth-child(2) {
+            background-color: #2ecc71;
+            background-image: linear-gradient(45deg, #2ecc71, #27ae60);
+        }
+        
+        .carousel-item:nth-child(3) {
+            background-color: #e74c3c;
+            background-image: linear-gradient(45deg, #e74c3c, #c0392b);
+        }
+        
+        .carousel-icon {
+            font-size: 6rem;
+            color: rgba(255,255,255,0.3);
+            position: absolute;
+            top: 50%;
+            right: 15%;
+            transform: translateY(-50%);
+        }
+        
+        .carousel-caption {
+            background-color: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
+            padding: 20px;
+            bottom: 50px;
+            max-width: 500px;
+            margin: 0 auto;
+            left: 50px;
+            right: auto;
+            text-align: left;
+        }
+        
+        .carousel-caption h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        .carousel-caption p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+        
+        /* Courses section */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-title a {
+            font-size: 0.9rem;
+            color: #f39c12;
+            text-decoration: none;
+        }
+        
+        .section-title a:hover {
+            text-decoration: underline;
+        }
+        
+        .course-card {
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            height: 320px; /* Fixed smaller height */
+        }
+        
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+        }
+        
+        .course-image {
+            height: 120px; /* Smaller image area */
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: #999;
+        }
+        
+        .course-body {
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            height: calc(100% - 120px);
+            overflow: hidden;
+        }
+        
+        .course-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+            font-size: 1rem;
+        }
+        
+        .course-status {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 5px;
+        }
+        
+        .course-description {
+            flex-grow: 1;
+            font-size: 0.85rem;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+        }
+        
+        .in-progress {
+            background-color: #f1c40f;
+            color: white;
+        }
+        
+        .completed {
+            background-color: #2ecc71;
+            color: white;
+        }
+        
+        .new-course {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .btn-enroll {
+            background-color: #f39c12;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+            font-weight: 600;
+            border: none;
+            margin-top: 10px;
+            display: block;
+            width: 100%;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        
+        .btn-enroll:hover {
+            background-color: #e67e22;
+            color: white;
+        }
+        
+        /* User account section */
+        .user-welcome {
+            text-align: right;
+            font-weight: 600;
+            color: #555;
+        }
+        
+        .user-welcome i {
+            margin-right: 5px;
+            color: #f39c12;
+        }
+        
+        /* Filters and tabs */
+        .course-filters {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .filter-label {
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 5px;
+        }
+        
+        .course-tabs .nav-link {
+            color: #555;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 0;
+            position: relative;
+        }
+        
+        .course-tabs .nav-link.active {
+            color: #f39c12;
+            background-color: transparent;
+            border-bottom: 3px solid #f39c12;
+        }
+        
+        .course-tabs .nav-link:hover {
+            color: #f39c12;
+        }
+        
+        .recommended-badge {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+        }
+        
+        /* Progress dashboard */
+        .progress-dashboard {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .progress-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .progress-card {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .progress-bar {
+            height: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            background-color: #e0e0e0;
+        }
+        
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 5px;
+            background-color: #f39c12;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-banner {
+                padding: 30px 0;
+            }
+            
+            .hero-banner h2 {
+                font-size: 1.8rem;
+            }
+            
+            .user-welcome {
+                text-align: center;
+                margin-top: 10px;
+            }
+            
+            .carousel-item {
+                height: 250px;
+            }
+            
+            .carousel-caption {
+                padding: 15px;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                max-width: calc(100% - 40px);
+            }
+            
+            .carousel-caption h3 {
+                font-size: 1.3rem;
+            }
+            
+            .carousel-icon {
+                font-size: 4rem;
+                right: 10%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top header with logo and account -->
+    <div class="top-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-3">
+                    <div class="logo">ConectaRD</div>
+                </div>
+                <div class="col-md-6">
+                    <div class="search-bar">
+                        <input type="text" class="form-control" placeholder="Buscar cursos...">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="user-welcome">
+                        <i class="fas fa-user-circle"></i> Bienvenido, Juan
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main navigation bar -->
+    <nav class="main-nav">
+        <div class="container">
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="principal.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="vista_curso.html"><i class="fas fa-book"></i> Cursos</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="perfil.html"><i class="fas fa-user"></i> Perfil</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="soporte.html"><i class="fas fa-question-circle"></i> Ayuda & Soporte</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Carousel with gradient backgrounds and icons -->
+    <div id="mainCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#mainCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <i class="fas fa-laptop carousel-icon"></i>
+                <div class="carousel-caption">
+                    <h3>¡Inscripciones Abiertas!</h3>
+                    <p>Inscríbete ahora en nuestros cursos de habilidades digitales básicas y avanzadas.</p>
+                    <a href="#cursos" class="btn btn-light">Ver Cursos</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <i class="fas fa-file-alt carousel-icon"></i>
+                <div class="carousel-caption">
+                    <h3>Nuevas Clases de Ofimática</h3>
+                    <p>Aprende a usar Microsoft Office, Google Docs y otras herramientas esenciales para el trabajo.</p>
+                    <a href="#" class="btn btn-light">Más Información</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <i class="fas fa-mobile-alt carousel-icon"></i>
+                <div class="carousel-caption">
+                    <h3>Conecta con el Mundo Digital</h3>
+                    <p>Nuestros cursos te ayudarán a navegar en el mundo digital con confianza.</p>
+                    <a href="#" class="btn btn-light">Explorar</a>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+    
+    <!-- Hero banner -->
+    <section class="hero-banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h2>Bienvenido a ConectaRD</h2>
+                    <p>Explora nuestros cursos y mejora tus habilidades digitales. Aprende a tu ritmo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Progress dashboard -->
+    <div class="container">
+        <div class="progress-dashboard">
+            <h3 class="progress-title">Tu progreso</h3>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="progress-card">
+                        <h5>Uso Básico del Correo Electrónico</h5>
+                        <p>Progreso: 60%</p>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" style="width: 60%"></div>
+                        </div>
+                        <a href="#" class="btn btn-enroll mt-3">Continuar</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="progress-card">
+                        <h5>Excel para Principiantes</h5>
+                        <p>Progreso: 35%</p>
+                        <div class="progress-bar">
+                            <div class="progress-bar-fill" style="width: 35%"></div>
+                        </div>
+                        <a href="#" class="btn btn-enroll mt-3">Continuar</a>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="progress-card">
+                        <h5>Cursos completados: 2</h5>
+                        <p>Microsoft Word Básico, Uso Básico de Smartphones</p>
+                        <a href="#" class="btn btn-enroll mt-3">Ver certificados</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Course filters and categories -->
+    <div class="container mb-5" id="cursos">
+        <!-- Filters -->
+        <div class="course-filters">
+            <div class="row">
+                <div class="col-md-4">
+                    <p class="filter-label">Filtrar por:</p>
+                    <select class="form-select">
+                        <option selected>Todos los cursos</option>
+                        <option>Cursos nuevos</option>
+                        <option>Mis cursos</option>
+                        <option>Cursos completados</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <p class="filter-label">Nivel:</p>
+                    <select class="form-select">
+                        <option selected>Todos los niveles</option>
+                        <option>Principiante</option>
+                        <option>Intermedio</option>
+                        <option>Avanzado</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <p class="filter-label">Ordenar por:</p>
+                    <select class="form-select">
+                        <option selected>Popularidad</option>
+                        <option>Más recientes</option>
+                        <option>Alfabético (A-Z)</option>
+                        <option>Duración (menor a mayor)</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Course Tabs -->
+        <ul class="nav nav-tabs course-tabs mb-4">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#recommended">Recomendados para ti</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#office">Ofimática</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#internet">Internet</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#devices">Dispositivos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#security">Seguridad</a>
+            </li>
+        </ul>
+        
+        <div class="tab-content">
+            <!-- Recommended Tab -->
+            <div class="tab-pane fade show active" id="recommended">
+                <h3 class="section-title">Cursos recomendados para ti <a href="#">Ver todos <i class="fas fa-chevron-right"></i></a></h3>
+                <div class="row">
+                    <!-- Course 1 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card course-card">
+                            <div class="course-image">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="course-body">
+                                <h5 class="course-title">Uso Básico del Correo Electrónico</h5>
+                                <p class="course-description">Aprende a crear cuentas de correo, enviar y recibir mensajes y adjuntar archivos.</p>
+                                <span class="course-status in-progress">En progreso</span>
+                                <a href="#" class="btn btn-enroll">Continuar Curso</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Course 3 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card course-card">
+                            <div class="course-image">
+                                <i class="fas fa-table"></i>
+                            </div>
+                            <div class="course-body">
+                                <h5 class="course-title">Excel para Principiantes</h5>
+                                <p class="course-description">Domina las funciones básicas de Excel para crear hojas de cálculo efectivas.</p>
+                                <span class="course-status in-progress">En progreso</span>
+                                <a href="#" class="btn btn-enroll">Continuar Curso</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Course 4 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card course-card">
+                            <div class="course-image">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div class="course-body">
+                                <h5 class="course-title">Navegación Segura por Internet</h5>
+                                <p class="course-description">Aprende a navegar de forma segura y proteger tus datos personales.</p>
+                                <span class="course-status new-course">Nuevo</span>
+                                <a href="#" class="btn btn-enroll">Inscribirme</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Course 11 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card course-card">
+                            <div class="course-image">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <div class="course-body">
+                                <h5 class="course-title">Presentaciones Efectivas</h5>
+                                <p class="course-description">Aprende a crear presentaciones impactantes con PowerPoint y Google Slides.</p>
+                                <span class="course-status new-course">Nuevo</span>
+                                <a href="#" class="btn btn-enroll">Inscribirme</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Office Tab -->
+            <div class="tab-pane fade" id="office">
+                <h3 class="section-title">Cursos de Ofimática <a href="#">Ver todos <i class="fas fa-chevron-right"></i></a></h3>
+                <div class="row">
+                    <!-- Course 2 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card course-card">
+                            <div class="course-image">
+                                <i class="fas fa-file-word"></i>
+                            </div>
+                            <div class="course-body">
+                                <h5 class="course-title">Microsoft Word Básico</h5>
+                                <p class="course-description">Aprende a crear documentos, dar formato al texto e insertar imágenes.</p>
+                                <span class="course-status completed">Completado</span>
+                                <a href="#" class="btn btn-enroll">Ver Certificado</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Course 3 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card course-card">
+                            <div class="course-image">
+                                <i class="fas fa-table"></i>
+                            </div>
+                            <div class="course-body">
+                                <h5 class="course-title">Excel para Principiantes</h5>
+                                <p class="course-description">Domina las funciones básicas de Excel para crear hojas de cálculo efectivas.</p>
+                                <span class="course-status in-progress">En progreso</span>
+                                <a href="#" class="btn btn-enroll">Continuar Curso</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Course 11 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card course-card">
+                            <div class="course-image">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <div class="course-body">
+                                <h5 class="course-title">Presentaciones Efectivas</h5>
+                                <p class="course-description">Aprende a crear presentaciones impactantes con PowerPoint y Google Slides.</p>
+                                <span class="course-status new-course">Nuevo</span>
+                                <a href="#" class="btn btn-enroll">Inscribirme</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Excel Avanzado (nuevo curso) -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card course-card">
+                            <div class="course-image">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div class="course-body">
+                                <h5 class="course-title">Excel Avanzado: Fórmulas y Funciones</h5>
+                                <p class="course-description">Domina las funciones avanzadas de Excel como BUSCARV, SI, Y, O y más.</p>
+                                <span class="course-status new-course">Nuevo</span>
+                                <a href="#" class="btn btn-enroll">Inscribirme</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Internet Tab -->
+            <div class="tab-pane fade" id="internet">
+                <h3 class="section-title">Cursos de Internet <a href="#">Ver todos <i class="fas fa-chevron-right"></i></a></h3>
+                <div class="row">
+                    <!-- Course 1 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card course-card">
+                            <div class="course-image">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="course-body">
+                                <h5 class="course-title">Uso Básico del Correo Electrónico</h5>
+                                <p class="course-description">Aprende a crear cuentas de correo, enviar y recibir mensajes y adjuntar archivos.</p>
+                                <span class="course-status in-progress">En progreso</span>
+                                <a href="#" class="btn btn-enroll">Continuar Curso</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Course 4 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card course-card">
+                            <div class="course-image">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <div class="course-body">
+                                <h5 class="course-title">Navegación Segura por Internet</h5>
+                                <p class="course-description">Aprende a navegar de forma segura y proteger tus datos personales.</p>
+                                <span class="course-status new-course">Nuevo</span>
+                                <a href="#" class="btn btn-enroll">Inscribirme</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Course 9 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card course-card">
+                            <div class="course-image">
+                                <i class="fas fa-shopping-cart"></i>
+                            </div>
+                            <div class="course-body">
+                                <h5 class="course-title">Compras Seguras en Línea</h5>
+                                <p class="course-description">Descubre cómo realizar compras online de forma segura y evitar fraudes.</p>
+                                <span class="course-status new-course">Nuevo</span>
+                                <a href="#" class="btn btn-enroll">Inscribirme</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Course 12 -->
+                    <div class="col-md-3 mb-4">
+                        <div class="card course-card">
+                            <div class="course-image">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="course-body">
+                                <h5 class="course-title">Redes Sociales para Principiantes</h5>
+                                <p class="course-description">Aprende a usar las principales redes sociales de forma segura y efectiva.</p>
+                                <span class="course-status new-course">Nuevo</span>
+                                <a href="#" class="btn btn-enroll">Inscribirme</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Devices Tab -->
+            <div class="tab-pane fade" id="devices">
+                <h3 class="section-title">Cursos de Dispositivos

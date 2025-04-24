@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConectaRD - Perfil de Usuario</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f9fa;
+    }
+    
+    /* Top header styles */
+    .top-header {
+      background-color: #fff;
+      padding: 10px 0;
+      border-bottom: 1px solid #e8e8e8;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .search-bar input {
+      border-radius: 20px;
+      border: 1px solid #ddd;
+      padding-left: 15px;
+    }
+    
+    .user-welcome {
+      text-align: right;
+      font-weight: 600;
+      color: #555;
+    }
+    
+    .user-welcome i {
+      margin-right: 5px;
+      color: #f39c12;
+    }
+    
+    /* Main navigation */
+    .main-nav {
+      background-color: #f39c12;
+      padding: 0;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    
+    .main-nav .nav-link {
+      color: white;
+      padding: 15px 20px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    
+    .main-nav .nav-link:hover, .main-nav .nav-link.active {
+      background-color: rgba(255,255,255,0.2);
+    }
+    
+    .main-nav .nav-item i {
+      margin-right: 8px;
+    }
+    
+    /* Profile header */
+    .profile-header {
+      background-color: #fff;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .profile-cover {
+      height: 150px;
+      background-color: #f39c12;
+      position: relative;
+    }
+    
+    .profile-img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 5px solid white;
+      background-color: #f8f9fa;
+      position: absolute;
+      bottom: -60px;
+      left: 30px;
+      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .profile-info {
+      padding: 70px 20px 20px;
+    }
+    
+    .profile-info h2 {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .profile-info p {
+      color: #666;
+      margin-bottom: 3px;
+    }
+    
+    .profile-actions {
+      padding: 20px;
+      border-top: 1px solid #eee;
+      text-align: right;
+    }
+    
+    /* Stats cards */
+    .stats-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 15px;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    
+    .stats-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .stats-icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+      color: #f39c12;
+    }
+    
+    .stats-number {
+      font-size: 1.8rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #333;
+    }
+    
+    .stats-label {
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    /* Tabs */
+    .nav-tabs {
+      border-bottom: 1px solid #eee;
+      margin-bottom: 20px;
+    }
+    
+    .nav-tabs .nav-link {
+      border: none;
+      color: #666;
+      font-weight: 600;
+      padding: 15px 20px;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s;
+    }
+    
+    .nav-tabs .nav-link.active {
+      color: #f39c12;
+      border-bottom: 3px solid #f39c12;
+      background-color: transparent;
+    }
+    
+    .tab-content {
+      background-color: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    /* Course card */
+    .course-card {
+      border: none;
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      margin-bottom: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    
+    .course-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.15);
+    }
+    
+    .course-image {
+      height: 120px;
+      background-color: #e0e0e0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: #999;
+    }
+    
+    .course-body {
+      padding: 15px;
+    }
+    
+    .course-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+      color: #333;
+      font-size: 1rem;
+    }
+    
+    .course-info {
+      margin-bottom: 10px;
+    }
+    
+    /* Status badge */
+    .status-badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-right: 5px;
+    }
+    
+    .in-progress {
+      background-color: #f1c40f;
+      color: white;
+    }
+    
+    .completed {
+      background-color: #2ecc71;
+      color: white;
+    }
+    
+    .btn-action {
+      background-color: #f39c12;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 5px 15px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    
+    .btn-action:hover {
+      background-color: #e67e22;
+      color: white;
+    }
+    
+    .btn-outline {
+      border: 1px solid #f39c12;
+      color: #f39c12;
+      background-color: transparent;
+      border-radius: 4px;
+      padding: 5px 15px;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    
+    .btn-outline:hover {
+      background-color: #f39c12;
+      color: white;
+    }
+    
+    /* Certificate card */
+    .certificate-card {
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 20px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .certificate-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    
+    .certificate-icon {
+      font-size: 3rem;
+      color: #f39c12;
+      margin-bottom: 15px;
+    }
+    
+    /* Activity timeline */
+    .timeline-item {
+      padding-left: 30px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+    
+    .timeline-item:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 2px;
+      background-color: #eee;
+    }
+    
+    .timeline-marker {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: #f39c12;
+      position: absolute;
+      left: -9px;
+      top: 5px;
+    }
+    
+    .timeline-date {
+      color: #999;
+      font-size: 0.8rem;
+      margin-bottom: 5px;
+    }
+    
+    /* Badges section */
+    .badge-item {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    .badge-icon {
+      width: 80px;
+      height: 80px;
+      background-color: #f8f9fa;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      border: 2px solid #f39c12;
+    }
+    
+    .badge-icon i {
+      font-size: 2rem;
+      color: #f39c12;
+    }
+    
+    .badge-name {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    
+    .badge-date {
+      font-size: 0.8rem;
+      color: #999;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      .profile-img {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      
+      .profile-info {
+        text-align: center;
+        padding-top: 70px;
+      }
+      
+      .profile-actions {
+        text-align: center;
+      }
+      
+      .user-welcome {
+        text-align: center;
+        margin-top: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Top header with logo and account -->
+  <div class="top-header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-md-3">
+          <div class="logo">ConectaRD</div>
+        </div>
+        <div class="col-md-6">
+          <div class="search-bar">
+            <input type="text" class="form-control" placeholder="Buscar cursos...">
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="user-welcome">
+            <i class="fas fa-user-circle"></i> Bienvenido, Juan
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Main navigation bar -->
+  <nav class="main-nav">
+    <div class="container">
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link" href="principal.html"><i class="fas fa-chart-line"></i> Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="vista_curso.html"><i class="fas fa-book"></i> Cursos</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="perfil.html"><i class="fas fa-user"></i> Perfil</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="soporte.html"><i class="fas fa-question-circle"></i> Ayuda & Soporte</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+  <div class="container py-4">
+    <!-- Profile Header -->
+    <div class="profile-header">
+      <div class="profile-cover">
+        <div class="profile-img">
+          <i class="fas fa-user fa-3x" style="color: #999;"></i>
+        </div>
+      </div>
+      <div class="profile-info">
+        <div class="row">
+          <div class="col-md-8">
+            <h2>Juan Pérez</h2>
+            <p><i class="fas fa-envelope me-2"></i> juan@example.com</p>
+            <p><i class="fas fa-map-marker-alt me-2"></i> Santo Domingo, República Dominicana</p>
+            <div class="mt-3">
+              <span class="status-badge in-progress">Principiante Digital</span>
+              <span class="status-badge completed">Usuario Activo</span>
+            </div>
+          </div>
+          <div class="col-md-4 text-end">
+            <span class="text-muted">Miembro desde: Febrero 2025</span>
+          </div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="btn btn-outline me-2"><i class="fas fa-edit"></i> Editar Perfil</button>
+      </div>
+    </div>
+    
+    <!-- Stats Row -->
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <div class="stats-card">
+          <div class="stats-icon">
+            <i class="fas fa-book"></i>
+          </div>
+          <div class="stats-number">3</div>
+          <div class="stats-label">Cursos Inscritos</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stats-card">
+          <div class="stats-icon">
+            <i class="fas fa-check-circle"></i>
+          </div>
+          <div class="stats-number">2</div>
+          <div class="stats-label">Cursos Completados</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stats-card">
+          <div class="stats-icon">
+            <i class="fas fa-certificate"></i>
+          </div>
+          <div class="stats-number">2</div>
+          <div class="stats-label">Certificados</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stats-card">
+          <div class="stats-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="stats-number">28</div>
+          <div class="stats-label">Horas de Estudio</div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Content Tabs -->
+    <ul class="nav nav-tabs" id="profileTabs" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses" type="button" role="tab">Mis Cursos</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="certificates-tab" data-bs-toggle="tab" data-bs-target="#certificates" type="button" role="tab">Certificados</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="activity-tab" data-bs-toggle="tab" data-bs-target="#activity" type="button" role="tab">Actividad</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="badges-tab" data-bs-toggle="tab" data-bs-target="#badges" type="button" role="tab">Insignias</button>
+      </li>
+    </ul>
+    
+    <div class="tab-content" id="profileTabsContent">
+      <!-- Courses Tab -->
+      <div class="tab-pane fade show active" id="courses" role="tabpanel" aria-labelledby="courses-tab">
+        <h4 class="mb-4">Cursos Inscritos</h4>
+        
+        <!-- Curso 1 -->
+        <div class="card course-card mb-4">
+          <div class="row g-0">
+            <div class="col-md-3">
+              <div class="course-image">
+                <i class="fas fa-laptop"></i>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="course-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <h5 class="course-title">Curso de Alfabetización Digital</h5>
+                  <span class="status-badge in-progress">En progreso</span>
+                </div>
+                <p class="text-muted mb-2">Instructor: María González</p>
+                <div class="course-info">
+                  <div class="d-flex justify-content-between">
+                    <small class="text-muted">Próxima clase: 12 Abril</small>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                  <button class="btn btn-action btn-sm"><i class="fas fa-play-circle me-1"></i> Continuar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Curso 2 -->
+        <div class="card course-card mb-4">
+          <div class="row g-0">
+            <div class="col-md-3">
+              <div class="course-image">
+                <i class="fas fa-file-word"></i>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="course-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <h5 class="course-title">Microsoft Word Básico</h5>
+                  <span class="status-badge completed">Completado</span>
+                </div>
+                <p class="text-muted mb-2">Instructor: Carlos Mendoza</p>
+                <div class="course-info">
+                  <div class="d-flex justify-content-between">
+                    <small class="text-muted">Finalizado: 15 Marzo</small>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                  <button class="btn btn-action btn-sm"><i class="fas fa-certificate me-1"></i> Ver Certificado</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Curso 3 -->
+        <div class="card course-card mb-4">
+          <div class="row g-0">
+            <div class="col-md-3">
+              <div class="course-image">
+                <i class="fas fa-comments"></i>
+              </div>
+            </div>
+            <div class="col-md-9">
+              <div class="course-body">
+                <div class="d-flex justify-content-between align-items-start">
+                  <h5 class="course-title">Redes Sociales para Emprendedores</h5>
+                  <span class="status-badge in-progress">En progreso</span>
+                </div>
+                <p class="text-muted mb-2">Instructor: Laura Martínez</p>
+                <div class="course-info">
+                  <div class="d-flex justify-content-between">
+                    <small class="text-muted">Próxima clase: 10 Abril</small>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-end mt-3">
+                  <button class="btn btn-action btn-sm"><i class="fas fa-play-circle me-1"></i> Continuar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Cursos Recomendados -->
+        <h5 class="mt-5 mb-4">Cursos Recomendados</h5>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <div class="card course-card h-100">
+              <div class="course-image">
+                <i class="fas fa-table"></i>
+              </div>
+              <div class="course-body">
+                <h5 class="course-title">Excel para Principiantes</h5>
+                <p class="text-muted mb-3 small">Domina las funciones básicas de Excel para crear hojas de cálculo efectivas.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <div class="card course-card h-100">
+              <div class="course-image">
+                <i class="fas fa-desktop"></i>
+              </div>
+              <div class="course-body">
+                <h5 class="course-title">Navegación Segura por Internet</h5>
+                <p class="text-muted mb-3 small">Aprende a navegar de forma segura y proteger tus datos personales.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-4 mb-3">
+            <div class="card course-card h-100">
+              <div class="course-image">
+                <i class="fas fa-chart-pie"></i>
+              </div>
+              <div class="course-body">
+                <h5 class="course-title">Presentaciones Efectivas</h5>
+                <p class="text-muted mb-3 small">Aprende a crear presentaciones impactantes con PowerPoint y Google Slides.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Certificates Tab -->
+      <div class="tab-pane fade" id="certificates" role="tabpanel" aria-labelledby="certificates-tab">
+        <h4 class="mb-4">Mis Certificados</h4>
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="certificate-card">
+              <div class="certificate-icon">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <h5>Introducción a la Tecnología Básica</h5>
+              <p class="text-muted mb-3">Completado: 15 Febrero, 2025</p>
+              <div class="d-flex justify-content-center">
+                <button class="btn btn-outline btn-sm me-2"><i class="fas fa-download me-1"></i> Descargar</button>
+                <button class="btn btn-outline btn-sm"><i class="fas fa-share-alt me-1"></i> Compartir</button>
+              </div>
+            </div>
+          </div>
+          
+          <div class="col-md-6 mb-4">
+            <div class="certificate-card">
+              <div class="certificate-icon">
+                <i class="fas fa-certificate"></i>
+              </div>
+              <h5>Microsoft Word Básico</h5>
+              <p class="text-muted mb-3">Completado: 15 Marzo, 2025</p>
+              <div class="d-flex justify-content-center">
+                <button class="btn btn-outline btn-sm me-2"><i class="fas fa-download me-1"></i> Descargar</button>
+                <button class="btn btn-outline btn-sm"><i class="fas fa-share-alt me-1"></i> Compartir</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Activity Tab -->
+      <div class="tab-pane fade" id="activity" role="tabpanel" aria-labelledby="activity-tab">
+        <h4 class="mb-4">Actividad Reciente</h4>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-date">8 Abril, 2025 - 14:30</div>
+          <div class="timeline-content">
+            <strong>Completaste una lección</strong>
+            <p>Has finalizado la lección "Uso seguro de redes sociales" del curso Redes Sociales para Emprendedores.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-date">6 Abril, 2025 - 10:15</div>
+          <div class="timeline-content">
+            <strong>Obtuviste una nueva insignia</strong>
+            <p>Has recibido la insignia "Comunicador Digital" por completar las actividades de comunicación online.</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-date">5 Abril, 2025 - 16:20</div>
+          <div class="timeline-content">
+            <strong>Actualizaste tu proyecto</strong>
+            <p>Realizaste cambios en tu proyecto "Estrategia de Redes Sociales".</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-date">1 Abril, 2025 - 09:45</div>
+          <div class="timeline-content">
+            <strong>Te inscribiste en un nuevo curso</strong>
+            <p>Has comenzado el curso "Redes Sociales para Emprendedores".</p>
+          </div>
+        </div>
+        
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-date">15 Marzo, 2025 - 11:30</div>
+          <div class="timeline-content">
+            <strong>Completaste un curso</strong>
+            <p>¡Felicidades! Has completado el curso "Microsoft Word Básico" y obtenido tu certificado.</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Badges Tab -->
+      <div class="tab-pane fade" id="badges" role="tabpanel" aria-labelledby="badges-tab">
+        <h4 class="mb-4">Mis Insignias</h4>
+        <div class="row">
+          <div class="col-md-3 badge-item">
+            <div class="badge-icon">
+              <i class="fas fa-laptop"></i>
+            </div>
+            <div class="badge-name">Principiante Digital</div>
+            <div class="badge-date">Obtenido: 15 Feb, 2025</div>
+          </div>
+          
+          <div class="col-md-3 badge-item">
+            <div class="badge-icon">
+              <i class="fas fa-comments"></i>
+            </div>
+            <div class="badge-name">Comunicador Digital</div>
+            <div class="badge-date">Obtenido: 6 Abr, 2025</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
